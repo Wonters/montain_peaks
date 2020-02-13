@@ -15,11 +15,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class PeakSerializer(serializers.ModelSerializer):
     class Meta:
         model = Peak
-        fields = ['lat', 'lon', 'altitude', 'name']
+        fields = ['id', 'name', 'get_geo_bb', 'altitude']
 
 
-# ViewSets define the view behavior.
-class UserViewSet(serializers.ModelSerializer):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+
 
