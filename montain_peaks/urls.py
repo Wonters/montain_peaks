@@ -14,15 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework_swagger.views import get_swagger_view
+from rest_framework.schemas import get_schema_view
+from django.views.generic import TemplateView
 
-schema_view = get_swagger_view(title='Pastebin API')
+
+schema_view = get_schema_view(title='test', version='')
+schema_swagger_view = get_swagger_view(title='test swagger', url='schematest')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/', include('peak.urls')),
-    path('api/docs/', schema_view)
 
+    path('api/docs', schema_view, name='docs'),
+    path('api/docs/swagger', TemplateView.as_view(template_name="swager_ui.html"), name='swagger-ui'),
+    path('api/schema_swagger', schema_swagger_view, name='schema_swagger'),
 ]

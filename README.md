@@ -1,20 +1,24 @@
-# Test 1 - mountain peaks
+# Mountain Peaks
 
-The context of this test is to provide a simple web service for storing and retrieving moutain peaks.
+Montain Peaks is api rest which plot peaks on a map
 
-Using the **python** web framework of your choosing and a database. (postgresql database is better (postGIS can be used for geo features)),
- implement the following features:
-
-- models/db tables for storing a peak location and attribute: lat, lon, altitude, name
-- REST api endpoints to :
+- one model store a peak location and attribute: lat, lon, altitude, name
+- an api rest handle 
     * create/read/update/delete a peak
     * retrieve a list of peaks in a given geographical bounding box
-- add an api/docs url to allow viewing the documentation of the api and send requests on endpoints
-- deploy all this stack using docker and docker-compose
+- a documentation for api rest accessible on api/docs url
+
 - [Optional] add ip filtering with a country whitelist settings. Connections from a country not in the list should return a http 403. An admin page protected
 with user/password authentication should allow viewing rejected connections.
-- [Optional] add an an html page to view the peaks on a map (use opensource packages)
+- One view to show peak on a satelite layout
 
-The source code should be delivered using bitbucket or github with detailed explanations on how to deploy and launch the project.
+**Install**
+- In the directory montain_peaks do : $ docker-compose up 
+- Make the migrations : $ docker-compose run web python manage.py migrate
+- Create a superuser : $ docker-compose run web python manage.py createsuperuser
 
-# Test 2 - 
+** Go to the http://127.0.0.1:8000/api/ **
+
+    
+
+
