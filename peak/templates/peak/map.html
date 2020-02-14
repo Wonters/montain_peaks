@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Montain peak
+{% endblock %}
+
+{% block container %}
+<h1> Map of peaks </h1>
+<div id="demoMap" style="height:250px">
+    <div id="maps"></div>
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    let data_ = [];
+    let layout = {
+        autosize: true,
+        hovermode: 'closest',
+        mapbox: {
+            bearing: 0,
+            center: {
+                lat: 45.1272590,
+                lon: 1.0980328,
+            },
+            pitch: 0,
+            zoom: 1,
+            style: 'satellite',
+        },
+    };
+    $.getJSON('http://localhost:8000/api/geo/', function (data) {
+        data.forEach(
+            function (d, i) {
+                console.log(d);
+                data_.push(
+                    {
+                        type: 'scattermapbox',
+                        lat: [d.get_geo_bb[0]],
+                        lon: [d.get_geo_bb[1]],
+                        mode: 'markers',
+                        marker: {
+                            size: 14,
+                            color: 'rgb(30,144,255)',
+                        },
+                        text: [d.name],
+                        name: d.name,
+                    },
+                )
+            }
+        );
+        Plotly.setPlotConfig({
+            mapboxAccessToken: 'pk.eyJ1IjoiZXRwaW5hcmQiLCJhIjoiY2luMHIzdHE0MGFxNXVubTRxczZ2YmUxaCJ9.hwWZful0U2CQxit4ItNsiQ'
+        });
+        Plotly.plot('maps', data_, layout, {showSendToCloud: true});
+    });
+
+</script>
+{% endblock %}
