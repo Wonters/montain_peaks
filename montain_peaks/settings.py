@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v!a9at2_w@pfz53c#6yc4d86k8rvm*r^!*53-$0wz_t8qt2phz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,8 +134,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #      os.path.join('', '/peak/static')
 #  ]
 
+
+
 REST_FRAMEWORK = {
-'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+'DEFAULT_PERMISSION_CLASSES': (
+    ),
+'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

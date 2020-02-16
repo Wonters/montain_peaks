@@ -6,10 +6,9 @@ Montain Peaks is api rest which plot peaks on a map
 - an api rest handle 
     * create/read/update/delete a peak
     * retrieve a list of peaks in a given geographical bounding box
+    * ip filtering admin page protected 
+    with user/password authentication should allow viewing rejected connections.
 - a documentation for api rest accessible on api/docs url
-
-- [Optional] add ip filtering with a country whitelist settings. Connections from a country not in the list should return a http 403. An admin page protected
-with user/password authentication should allow viewing rejected connections.
 - One view to show peak on a satelite layout
 
 **Install**

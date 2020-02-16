@@ -19,3 +19,7 @@ class Peak(models.Model):
 
     def get_geo_bb(self):
         return [str(self.lat), str(self.lon)]
+
+
+class IPRejected(models.Model):
+    ip = models.GenericIPAddressField()
